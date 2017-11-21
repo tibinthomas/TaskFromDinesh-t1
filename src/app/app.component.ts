@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-// import { Validators } from '@angular/forms/src/validators';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,18 +8,40 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class AppComponent {
   nameOnlyForm: FormGroup;
+  submitStatus = false;
+  name: string;
+  listOfAllUsers: string[];
 
   onSubmitButtonPress() {
+    this.submitStatus = false;
+    localStorage.setItem(name, name);
+    this.listOfAllUsers.push(name);
+    this.name = '';
+  }
 
+  ifNameIsUnique() {
+    if (this.listOfAllUsers.find(name) === undefined) {
+      return true;
+    }
   }
 
   private initForm() {
-    let name = '';
-
     this.nameOnlyForm = new FormGroup({
-      'name': new FormControl(name)
+      'name': new FormControl(name, [
+        Validators.required,
+        Validators.minLength(2),
+      ])
     });
 
 
   }
 }
+
+
+
+
+
+
+
+// user = JSON.parse(localStorage.getItem(currentUser));
+

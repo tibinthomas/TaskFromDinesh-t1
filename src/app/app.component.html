@@ -9,7 +9,8 @@
 <body>
   <div class="container">
     <div class="row">
-        <form [formGroup]="nameOnlyForm" novalidate (onSubmit)="onSubmitButtonPress()">
+       <div *ngIf="!submitStatus">
+         <form [formGroup]="nameOnlyForm" novalidate (onSubmit)="onSubmitButtonPress()">
           <div class="form-group">
             <br>
             <hr>
@@ -21,6 +22,12 @@
             <br>
           </div>
         </form>
+        <p *ngIf="nameOnlyForm.invalid || nameOnlyForm.touched">Name is mandatory</p>
+        <p *ngIf="nameOnlyForm.invalid || nameOnlyForm.touched">Name should start with upper case</p>
+        <p *ngIf="nameOnlyForm.invalid || nameOnlyForm.touched">Name should not contain any special charector</p>
+        <p *ngIf="nameOnlyForm.invalid || nameOnlyForm.touched">Name alredy exist</p>
+        <p *ngIf="nameOnlyForm.invalid || nameOnlyForm.touched">Name can't be less than 2 charector</p>
+      </div>
       </div>
     </div>
 </body>
