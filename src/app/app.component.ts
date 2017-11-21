@@ -14,13 +14,15 @@ export class AppComponent {
   listOfAllUsers: string[];
 
   onSubmitButtonPress() {
+    if (this.nameIsUnique()) {
     this.submitStatus = false;
     localStorage.setItem(name, name);
     this.listOfAllUsers.push(name);
     this.name = '';
+    }
   }
 
-  ifNameIsUnique() {
+  nameIsUnique(): boolean {
     if (this.listOfAllUsers.find(name) === undefined) {
       return true;
     }
@@ -28,12 +30,12 @@ export class AppComponent {
 
   private initForm() {
     this.nameOnlyForm = new FormGroup({
-      'name': new FormControl(name, [
+      'name': new FormControl(name, Validators.compose([
         Validators.required,
         Validators.minLength(2),
         ValidateUpperCaseFirst,
 
-      ])
+      ]))
     });
 
 
