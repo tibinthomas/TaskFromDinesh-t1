@@ -17,16 +17,16 @@
             <label for="name" class="center-block"> Name: 
               <input class="form-control" formControlName="name" id="name">
             </label>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <p *ngIf="name.required && nameOnlyForm.touched">Name is mandatory</p>
+            <p *ngIf="nameOnlyForm.get('name').errors.validStartWithUpper && nameOnlyForm.touched">Name should start with upper case</p>
+            <p *ngIf="nameOnlyForm.invalid && nameOnlyForm.touched">Name should not contain any special charector</p>
+            <p *ngIf="nameOnlyForm.invalid && nameOnlyForm.touched">Name alredy exist</p>
+            <p *ngIf="nameOnlyForm.invalid && nameOnlyForm.touched">Name can't be less than 2 charector</p>
+            <button [disabled]="nameOnlyForm.pristine" type="submit" class="btn btn-success">Submit</button>
             <hr>
             <br>
-          </div>
+          </div>  
         </form>
-        <p *ngIf="nameOnlyForm.invalid || nameOnlyForm.touched">Name is mandatory</p>
-        <p *ngIf="nameOnlyForm.invalid || nameOnlyForm.touched">Name should start with upper case</p>
-        <p *ngIf="nameOnlyForm.invalid || nameOnlyForm.touched">Name should not contain any special charector</p>
-        <p *ngIf="nameOnlyForm.invalid || nameOnlyForm.touched">Name alredy exist</p>
-        <p *ngIf="nameOnlyForm.invalid || nameOnlyForm.touched">Name can't be less than 2 charector</p>
       </div>
       </div>
     </div>

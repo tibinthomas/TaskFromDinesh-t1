@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ValidateUpperCaseFirst } from './custom.validators';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +31,8 @@ export class AppComponent {
       'name': new FormControl(name, [
         Validators.required,
         Validators.minLength(2),
+        ValidateUpperCaseFirst,
+
       ])
     });
 
