@@ -9,26 +9,30 @@
 <body>
   <div class="container">
     <div class="row">
-       <div *ngIf="!submitStatus">
-         <form [formGroup]="nameOnlyForm" novalidate (onSubmit)="onSubmitButtonPress()">
+       <div>
+         <form [formGroup]="nameOnlyForm" (ngSubmit)="onSubmitButtonPress()" novalidate>
           <div class="form-group">
             <br>
             <hr>
             <label for="name" class="center-block"> Name: 
-              <input class="form-control" formControlName="name" id="name">
+              <input class="form-control" formControlName="nameControl" id="name" placeholder="Ahh!! You can't just have any name you want" name="nameControl" (change)="onChangeInText()">
             </label>
-            <p style='color: red' *ngIf="nameOnlyForm.get('name').touched">Name is mandatory</p>
-            <p style='color: red' *ngIf="nameOnlyForm.get('name'). && nameOnlyForm.get('name').touched">Name should start with upper case</p>
-            <p style='color: red' *ngIf="nameOnlyForm.invalid && nameOnlyForm.get('name').touched">Name should not contain any special charector</p>
-            <p style='color: red' *ngIf="nameOnlyForm.invalid && nameOnlyForm.get('name').touched">Name already exist</p>
-            <p style='color: red' *ngIf="nameOnlyForm.invalid && nameOnlyForm.get('name').touched">Name can't be less than 2 charector</p>
-            <button [disabled]="!nameOnlyForm.valid" type="submit" class="btn btn-success">Submit</button>
+              <!-- THE RED LINES ARE NOT ERRORS ITS A TEMP ISSUE WITH ANGULAR LANGUAGE SERVICE -->
+            <p style='color: red' *ngIf="name.touched && name.errors.required">Name is mandatory </p>
+            <p style='color: red' *ngIf="name.touched && name.errors.pattern">Name should start with upper case</p>
+            <p style='color: red' *ngIf="name.touched ">Name should not contain any special charector</p>
+            <p style='color: red' *ngIf="notUniqueName">Name already exist</p>
+            <p style='color: red' *ngIf="name.touched && name.errors.minLength">Name can't be less than 2 charector</p>
+            <!-- <h3 style='color: green' *ngIf="saveMessageDisplay"> Saved Successfully</h3> -->
+            </div>
             <hr>
+            <button type="submit" class="btn btn-success">Submit</button>
             <br>
-          </div>  
-        </form>
+           
+        </form> 
       </div>
       </div>
     </div>
+    <br>
 </body>
 </html>
