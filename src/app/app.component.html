@@ -18,9 +18,9 @@
               <input class="form-control" formControlName="name" id="name">
             </label>
             <p style='color: red' *ngIf="nameOnlyForm.get('name').touched">Name is mandatory</p>
-            <p style='color: red' *ngIf="nameOnlyForm.get('name').ValidateUpperCaseFirst && nameOnlyForm.get('name').touched">Name should start with upper case</p>
+            <p style='color: red' *ngIf="nameOnlyForm.get('name'). && nameOnlyForm.get('name').touched">Name should start with upper case</p>
             <p style='color: red' *ngIf="nameOnlyForm.invalid && nameOnlyForm.get('name').touched">Name should not contain any special charector</p>
-            <p style='color: red' *ngIf="nameOnlyForm.invalid && nameOnlyForm.get('name').touched">Name alredy exist</p>
+            <p style='color: red' *ngIf="nameOnlyForm.invalid && nameOnlyForm.get('name').touched">Name already exist</p>
             <p style='color: red' *ngIf="nameOnlyForm.invalid && nameOnlyForm.get('name').touched">Name can't be less than 2 charector</p>
             <button [disabled]="!nameOnlyForm.valid" type="submit" class="btn btn-success">Submit</button>
             <hr>

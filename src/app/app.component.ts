@@ -14,7 +14,8 @@ export class AppComponent {
       'name': new FormControl(name, Validators.compose([
         Validators.required,
         Validators.minLength(2),
-        ValidateUpperCaseFirst
+        Validators.pattern('^[A-Z]+$'),
+        Validators.pattern('[]')
       ]))
   });
   }
