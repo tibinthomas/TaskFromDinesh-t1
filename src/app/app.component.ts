@@ -8,6 +8,17 @@ import { ValidateUpperCaseFirst } from './custom.validators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  constructor() {
+    this.nameOnlyForm = new FormGroup({
+      'name': new FormControl(name, Validators.compose([
+        Validators.required,
+        Validators.minLength(2),
+        ValidateUpperCaseFirst
+      ]))
+  });
+  }
+
   nameOnlyForm: FormGroup;
   submitStatus = false;
   name: string;
@@ -26,19 +37,6 @@ export class AppComponent {
     if (this.listOfAllUsers.find(name) === undefined) {
       return true;
     }
-  }
-
-  private initForm() {
-    this.nameOnlyForm = new FormGroup({
-      'name': new FormControl(name, Validators.compose([
-        Validators.required,
-        Validators.minLength(2),
-        ValidateUpperCaseFirst,
-
-      ]))
-    });
-
-
   }
 }
 
