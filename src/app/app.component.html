@@ -19,13 +19,13 @@
             </label>
               <!-- THE RED LINES ARE NOT ERRORS ITS A TEMP ISSUE WITH ANGULAR LANGUAGE SERVICE -->
             <p style='color: red' *ngIf="name.touched && name.errors && name.errors.required">Name is mandatory </p>
-            <p style='color: red' *ngIf="name.touched && name.errors && name.errors.pattern">Name should start with upper case</p>
-            <p style='color: red' *ngIf="name.touched ">Name should not contain any special charector</p>
-            <p style='color: red' *ngIf="notUniqueName">Name already exist</p>
-            <p style='color: red' *ngIf="name.touched && name.errors && name.errors.minLength">Name can't be less than 2 charector</p>
+            <p style='color: red' *ngIf="name.errors && name.errors.pattern">Name should start with upper case</p>
+            <p style='color: red' *ngIf="name.errors && name.errors.containsSpecialChars">Name contains forbidden special chars</p>
+            <p style='color: red' *ngIf="name.errors && name.errors.isUniqueValidator">Name already exist</p>
+            <p style='color: red' *ngIf="name.dirty && name.errors && !name.errors.minLength && !name.errors.containsSpecialChars && !name.errors.pattern && !name.errors.required">Name can't be less than 2 charector</p>
           </div>
           <hr>
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button [disabled]="name.invalid" type="submit" class="btn btn-success">Submit</button>
           <br>
           
         </form> 

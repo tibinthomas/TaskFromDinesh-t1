@@ -1,11 +1,9 @@
 import { AbstractControl } from '@angular/forms';
 
-export function ValidateUpperCaseFirst(control: AbstractControl) {
-  const regex = new RegExp('^[A-Z]');
+export function PresentsOfSymbols(control: AbstractControl) {
+const regex = new RegExp(/[!%^*()+|~=`{}\[\]:";'<>?,.\/]+/);
   if (regex.test(control.value)) {
-    return { validStartWithUpper: true };
+    return { containsSpecialChars: true };
   }
   return null;
 }
-
-errors.validStartWithUpper.

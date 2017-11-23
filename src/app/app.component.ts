@@ -1,6 +1,7 @@
 import { Component, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { ValidateUpperCaseFirst } from './custom.validators';
+import { PresentsOfSymbols } from './custom.validators';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -25,9 +26,11 @@ export class AppComponent {
   constructor(fb: FormBuilder) {
     this.nameOnlyForm = fb.group({
       nameControl: ['', [
-        Validators.required,
         Validators.minLength(2),
-        Validators.pattern('^[A-Z][a-z,A-Z, ]*')
+        Validators.required,
+        Validators.pattern(/^[A-Z]{1}.*/),
+        PresentsOfSymbols,
+        // this.IsUniqueValidator
       ]]
   });
   }
@@ -50,16 +53,24 @@ export class AppComponent {
 
   }
 
-  onChangeInText() {
+  onChangeInText(): boolean {
     this.nameControlValue = this.nameOnlyForm.controls['nameControl'].value;
     if (this.listOfAllUsers.includes(this.nameControlValue) ) {
-      this.notUniqueName = true;
+      return this.notUniqueName = true;
     } else {
-      this.notUniqueName = false;
+      return this.notUniqueName = false;
     }
   }
 
+  IsUniqueValidator(control: AbstractControl) {
+    if (true) {
+      return { isUniqueValidator: true };
+    }
+     //   return null;
+  }
+
 }
+
 
 
 
