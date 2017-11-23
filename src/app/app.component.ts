@@ -62,12 +62,12 @@ export class AppComponent {
     }
   }
 
-  IsUniqueValidator(control: AbstractControl) {
-    if (true) {
-      return { isUniqueValidator: true };
-    }
-     //   return null;
-  }
+  // IsUniqueValidator(control: AbstractControl) {
+  //   if (this.notUniqueName) {
+  //     return { isUniqueValidator: true };
+  //   }
+  //       return null;
+  // }
 
 }
 
