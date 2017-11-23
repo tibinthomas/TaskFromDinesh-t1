@@ -32,12 +32,22 @@ export class AppComponent {
   });
   }
 
+  showSaveMessage() {
+    this.saveMessageDisplay = true;
+
+    setTimeout(() => {
+      console.log(this.saveMessageDisplay);
+      this.saveMessageDisplay = false;
+    }, 5000);
+
+  }
+
   onSubmitButtonPress() {
     this.nameControlValue = this.nameOnlyForm.controls['nameControl'].value;
     localStorage.setItem(this.nameControlValue, this.nameControlValue);
     this.listOfAllUsers.push(this.nameControlValue);
-    this.saveMessageDisplay = true;
-    //setInterval(() => { this.saveMessageDisplay = false }, 5000);
+    return this.showSaveMessage();
+
   }
 
   onChangeInText() {
