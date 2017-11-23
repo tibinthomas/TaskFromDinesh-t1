@@ -20,16 +20,16 @@
               <!-- THE RED LINES ARE NOT ERRORS ITS A TEMP ISSUE WITH ANGULAR LANGUAGE SERVICE -->
             <p style='color: red' *ngIf="name.touched && name.errors && name.errors.required">Name is mandatory </p>
             <p style='color: red' *ngIf="name.touched && name.errors && name.errors.pattern">Name should start with upper case</p>
-            <p style='color: red' *ngIf="name.touched">Name should not contain any special charector</p>
+            <p style='color: red' *ngIf="name.touched ">Name should not contain any special charector</p>
             <p style='color: red' *ngIf="notUniqueName">Name already exist</p>
             <p style='color: red' *ngIf="name.touched && name.errors && name.errors.minLength">Name can't be less than 2 charector</p>
-            <!-- <h3 style='color: green' *ngIf="saveMessageDisplay"> Saved Successfully</h3> -->
-            </div>
-            <hr>
-            <button type="submit" class="btn btn-success">Submit</button>
-            <br>
-           
+          </div>
+          <hr>
+          <button type="submit" class="btn btn-success">Submit</button>
+          <br>
+          
         </form> 
+        <h3 style='color: green' *ngIf="saveMessageDisplay"> Saved Successfully</h3>
       </div>
       </div>
     </div>
