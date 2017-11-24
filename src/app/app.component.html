@@ -15,14 +15,14 @@
             <br>
             <hr>
             <label for="name" class="center-block"> Name: 
-              <input class="form-control" formControlName="nameControl" id="name" placeholder="Ahh!! You can't just have any name you want" name="nameControl" (change)="onChangeInText()">
+              <input class="form-control" formControlName="nameControl" id="name" placeholder="Ahh!! You can't just have any name you want" name="nameControl">
             </label>
               <!-- THE RED LINES ARE NOT ERRORS ITS A TEMP ISSUE WITH ANGULAR LANGUAGE SERVICE -->
             <p style='color: red' *ngIf="name.touched && name.errors && name.errors.required">Name is mandatory </p>
             <p style='color: red' *ngIf="name.errors && name.errors.pattern">Name should start with upper case</p>
-            <p style='color: red' *ngIf="name.errors && name.errors.containsSpecialChars">Name contains forbidden special chars</p>
-            <p style='color: red' *ngIf="name.errors && name.errors.isUniqueValidator">Name already exist</p>
-            <p style='color: red' *ngIf="name.dirty && name.errors && !name.errors.minLength && !name.errors.containsSpecialChars && !name.errors.pattern && !name.errors.required">Name can't be less than 2 charector</p>
+            <p style='color: red' *ngIf="name.errors && name.errors.presentsOfSymbols">Name contains forbidden special chars</p>
+            <p style='color: red' *ngIf="notUniqueName">Name already exist</p>
+            <p style='color: red' *ngIf="name.dirty && name.errors && name.errors.atleastTwoAlpha">Must contain atleast two alphabets</p>
           </div>
           <hr>
           <button [disabled]="name.invalid" type="submit" class="btn btn-success">Submit</button>
