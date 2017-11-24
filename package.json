@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "s": "npm install && ng serve --port=4001 -o",
-    "build": "ng build",
+    "b": "ng build --prod && firebase deploy",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
