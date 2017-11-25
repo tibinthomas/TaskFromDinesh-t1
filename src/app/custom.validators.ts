@@ -1,4 +1,5 @@
 import { AbstractControl } from '@angular/forms';
+import { AppComponent } from './app.component';
 
 export function presentsOfSymbolsValidator(control: AbstractControl): {[key: string]: any} | null {
   const regex = new RegExp(/[!%^*()+|~=`{}\[\]:";'<>?,.\/]+/);
@@ -11,4 +12,14 @@ export function atleastTwoAlphaValidator(control: AbstractControl): {[key: strin
   const regexValidity = regex.test(control.value);
   return regexValidity ? { 'atleastTwoAlpha': { value: control.value }} : null;
 }
+export function thisNameAlreadyExistValidator(control: AbstractControl) {
+    const listOfNamesArray = JSON.parse(localStorage.getItem('listOfNamesArray'));
+    return listOfNamesArray.includes(control.value) ?   { 'thisNameAlreadyExist' : { value: control.value }} :  null;
+}
+
+// RequiredValidator = {
+//   validator: (formGroup: FormGroup) => {
+//     return this.validateRequired(formGroup);
+//   }
+// };
 

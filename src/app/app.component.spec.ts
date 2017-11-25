@@ -1,16 +1,29 @@
 import { AppComponent } from './app.component';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms/src/form_builder';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-describe('nameOnlyComponent', () => {
+describe('nameOnlyComponent is on inspection', () => {
   let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
 
   beforeEach(() => {
-    component = new AppComponent(new FormBuilder);
+    TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule, FormsModule],
+      declarations: [AppComponent]
+    });
+
+    // create component and test fixture
+    fixture = TestBed.createComponent(AppComponent);
+
+    // get test component from the fixture
+    component = fixture.componentInstance;
+    component.ngOnInit();
   });
 
   it('should create a form with 1 control', () => {
-    expect(component.nameOnlyForm.contains('name')).toBeTruthy();
+    expect(component.nameOnlyForm.contains(name)).toBeTruthy();
   });
 
   it('should make the name control required', () => {
@@ -21,12 +34,12 @@ describe('nameOnlyComponent', () => {
     expect(control.valid).toBeFalsy();
   });
 
-  it('should make sure that name control contain atleast 2 char', () => {
+  it('should make sure that name control contain atleast 2 alphabet', () => {
     const control = component.nameOnlyForm.get('name');
 
     control.setValue('Q');
 
-    expect(control.valid).toBeTruthy();
+    expect(control.valid).toBeFalsy();
   });
 
   it('should make sure that name controls values got its first letter Cap', () => {
