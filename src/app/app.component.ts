@@ -1,7 +1,9 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
+
 import * as CustomValidators from './custom.validators';
+import { mockData } from './data.mock';
 
 @Component({
   selector: 'app-root',
@@ -19,15 +21,16 @@ export class AppComponent implements OnInit {
   saveMessageDisplay = false;
 
   // Data Store
-  listOfAllUsers = ['Tibin', 'Tibu', 'Tibi', 'Thibu']; // alwaysKeepInSyncWithsessionStorage
+  listOfAllUsers: string[];
 
 
   constructor(private fb: FormBuilder) {
-    sessionStorage.setItem('listOfNamesArray', JSON.stringify(this.listOfAllUsers));
+    localStorage.setItem('listOfNamesArray', JSON.stringify(this.listOfAllUsers));
   }
+
   ngOnInit() {
     this.nameOnlyForm = this.fb.group({
-      nameControl: ['', [
+      nameControl: [mockData.name, [
         Validators.required,
         Validators.pattern(/^[A-Z]{1}.*/),
         CustomValidators.atleastTwoAlphaValidator,
@@ -47,10 +50,9 @@ export class AppComponent implements OnInit {
 
   onSubmitButtonPress() {
     const nameJustAdded = this.name.value;
-    this.listOfAllUsers = JSON.parse(sessionStorage.getItem('listOfNamesArray'));
+    this.listOfAllUsers = JSON.parse(localStorage.getItem('listOfNamesArray'));
     this.listOfAllUsers.push(nameJustAdded);
-    sessionStorage.setItem('listOfNamesArray', JSON.stringify(this.listOfAllUsers));
-    // localStorage.removeItem('listOfNamesArray');
+    localStorage.setItem('listOfNamesArray', JSON.stringify(this.listOfAllUsers));
     this.nameOnlyForm.reset();
     this.showSaveMessage();
   }
