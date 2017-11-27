@@ -58,6 +58,18 @@ describe('nameOnlyComponent is on inspection and ', () => {
     expect(control.hasError('thisNameAlreadyExist')).toBeFalsy();
   });
 
+  it('should display a save message o the component for 5 sec after the scuccessful submission of form', () => {
+    spyOn(component, 'showSaveMessage').and.callFake(() => {
+      expect(component.showSaveMessage).toBeTruthy();
+    });
+  });
+
+  it('should add the value to the local storage', () => {
+    const n = component.listOfAllUsers.length;
+    spyOn(component, 'onSubmitButtonPress').and.callFake(() => {
+      expect(component.listOfAllUsers.length).toBe(n + 1);
+    });
+  });
 
 
 });
