@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 
 // First party dependency imports
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormMakingService } from './form-making.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     BrowserModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [FormMakingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

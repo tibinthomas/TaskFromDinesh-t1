@@ -1,9 +1,7 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
-
-import * as CustomValidators from './custom.validators';
-import { mockData } from './data.mock';
+import { FormMakingService } from './form-making.service';
 
 @Component({
   selector: 'app-root',
@@ -24,26 +22,17 @@ export class AppComponent implements OnInit {
   listOfAllUsers: string[] = [];
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fMakingService: FormMakingService) {
     localStorage.setItem('listOfNamesArray', JSON.stringify(this.listOfAllUsers));
   }
 
   ngOnInit() {
-    this.nameOnlyForm = this.fb.group({
-      nameControl: [mockData.name, [
-        Validators.required,
-        Validators.pattern(/^[A-Z]{1}.*/),
-        CustomValidators.atleastTwoAlphaValidator,
-        CustomValidators.presentsOfSymbolsValidator,
-        CustomValidators.thisNameAlreadyExistValidator
-      ]]
-    });
+    this.nameOnlyForm = this.fMakingService.createForm();
   }
 
   showSaveMessage() {
     this.saveMessageDisplay = true;
     setTimeout(() => {
-      console.log(this.saveMessageDisplay);
       this.saveMessageDisplay = false;
     }, 5000);
   }

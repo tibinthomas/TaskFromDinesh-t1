@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms/src/form_builder';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
 
-describe('nameOnlyComponent is on inspection and ', () => {
+describe('nameOnlyComponent is on an INSPECTION and ', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
@@ -58,9 +58,12 @@ describe('nameOnlyComponent is on inspection and ', () => {
     expect(control.hasError('thisNameAlreadyExist')).toBeFalsy();
   });
 
-  it('should display a save message o the component for 5 sec after the scuccessful submission of form', () => {
+  it('should display a save message on the component for 5 sec after the scuccessful submission of form', () => {
     spyOn(component, 'showSaveMessage').and.callFake(() => {
       expect(component.showSaveMessage).toBeTruthy();
+      setTimeout(() => {
+        expect(component.showSaveMessage).toBeFalsy();
+      }, 5000);
     });
   });
 
